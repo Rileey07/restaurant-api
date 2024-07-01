@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +23,6 @@ public class Restaurant {
     private String address;
     private String phoneNumber;
 
-    @OneToMany
-    @JoinColumn(name = "menu_id", referencedColumnName = "id")
-    private Menu menu;
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Menu> menu = new ArrayList<>();
 }
