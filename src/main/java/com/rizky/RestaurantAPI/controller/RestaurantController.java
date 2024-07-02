@@ -29,4 +29,16 @@ public class RestaurantController {
         Restaurant savedRestaurant = restaurantService.save(restaurant);
         return ResponseEntity.ok(savedRestaurant);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Restaurant> deleteRestaurant(@PathVariable String id){
+        restaurantService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Restaurant> deleteRestaurantbyParam(@RequestParam String id){
+        restaurantService.delete(id);
+        return ResponseEntity.ok().build();
+    }
 }
